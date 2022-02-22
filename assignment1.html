@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Slider</title>
+
+    <style>
+        body {
+            background-color: #1a0e0e;
+        }
+        
+        .main-slider {
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+        
+        .slide {
+            display: none;
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-8 mx-auto">
+            <div class="main-slider">
+                <img class="slide img-fluid" src="image-1.jfif">
+                <img class="slide img-fluid" src="image-2.jfif">
+                <img class="slide img-fluid" src="image-3.jfif">
+                <img class="slide img-fluid" src="image-4.jfif">
+                <img class="slide img-fluid" src="image-5.jfif">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var index = 0;
+    Slider();
+
+    function Slider() {
+        var i;
+        var x = document.getElementsByClassName("slide");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        index++;
+        if (index > x.length) {
+            index = 1
+        }
+        x[index - 1].style.display = "block";
+        setTimeout(Slider, 3000);
+    }
+</script>
+
+</html>
