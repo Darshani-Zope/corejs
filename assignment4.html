@@ -17,10 +17,9 @@
         p {
             line-height: 1.5em;
         }
-        
-        after {
+        /* after {
             clear: both;
-        }
+        } */
         
         .login {
             margin: 50px auto;
@@ -36,8 +35,7 @@
             border-top: 3px solid #434a52;
             border-bottom: 3px solid #434a52;
         }
-        
-        .login form span {
+        /* .login form span {
             background-color: #363b41;
             border-radius: 3px 0px 0px 3px;
             border-right: 3px solid #434a52;
@@ -48,7 +46,7 @@
             text-align: center;
             width: 50px;
             height: 50px;
-        }
+        } */
         
         .login form input[type="email"] {
             background-color: #3b4148;
@@ -78,29 +76,36 @@
             border-radius: 3px;
             color: white;
             cursor: pointer;
-            transition: background 0.3s ease-in-out;
         }
         
         #login form input[type="submit"]:hover {
             background: #16aa56;
+        }
+        
+        #text {
+            display: block;
+            font-weight: 300;
+            font-style: italic;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
     <div class="login">
-        <form name='form-login'>
+        <form name='form-login' id="form">
 
             <h1>REGISTER</h1>
 
             <label for="name">Email</label>
-            <input type="email" id="name" placeholder="Username" required>
-
+            <input type="email" onkeydown="validation()" id="name" placeholder="Username" required>
+            <span id="text"></span>
+            <br>
             <label for="pw">Password</label>
             <input type="password" id="pw" placeholder="Password" required>
 
             <ul class="helper-text">
-                <li class="length">Must be at least 8 characters long.</li>
+                <li class="length">Must be of minimum of 8 and maximum of 24 charatcer.</li>
                 <li class="lowercase">Must contain a lowercase letter.</li>
                 <li class="uppercase">Must contain an uppercase letter.</li>
                 <li class="special">Must contain a number or special character.</li>
@@ -116,8 +121,9 @@
             <h1>SIGN IN</h1>
 
             <label for="userName">Email</label>
-            <input type="email" id="userName" placeholder="Username" required>
-
+            <input type="email" id="userName" onkeydown="validation1()" placeholder="Username" required>
+            <span id="text1"></span>
+            <br>
             <label for="userPw">Password</label>
             <input type="password" id="userPw" placeholder="Password" required>
 
@@ -132,6 +138,56 @@
     </div>
 </body>
 <script>
+    function validation() {
+        let email = document.getElementById('name').value
+        let text = document.getElementById('text')
+        let pattern = /^([\w\.\+]{1,})([^\W])(@)([\w]{1,})(\.[\w]{1,})+$/;
+
+        if (email.match(pattern)) {
+            form.classList.add('valid')
+            form.classList.remove('invalid')
+            text.innerHTML = "Your Email Address in valid"
+            text.style.color = 'Green'
+        } else {
+            form.classList.remove('valid')
+            form.classList.add('invalid')
+            text.innerHTML = "Please Enter Valid Email Address"
+            text.style.color = 'red'
+        }
+
+        if (email == '') {
+            form.classList.remove('valid')
+            form.classList.remove('invalid')
+            text.innerHTML = ""
+            text.style.color = 'red'
+        }
+    }
+
+    function validation1() {
+        let Useremail = document.getElementById('userName').value
+        let text1 = document.getElementById('text1')
+        let pattern = /^([\w\.\+]{1,})([^\W])(@)([\w]{1,})(\.[\w]{1,})+$/;
+
+        if (Useremail.match(pattern)) {
+            form.classList.add('valid')
+            form.classList.remove('invalid')
+            text1.innerHTML = "Your Email Address in valid"
+            text1.style.color = 'green'
+        } else {
+            form.classList.remove('valid')
+            form.classList.add('invalid')
+            text1.innerHTML = "Please Enter Valid Email Address"
+            text1.style.color = 'red'
+        }
+
+        if (Useremail == '') {
+            form.classList.remove('valid')
+            form.classList.remove('invalid')
+            text.innerHTML = ""
+            text.style.color = 'red'
+        }
+    }
+
     function store() {
 
         var name = document.getElementById('name');
@@ -139,7 +195,6 @@
         var lowerCaseLetters = /[a-z]/g;
         var upperCaseLetters = /[A-Z]/g;
         var numbers = /[0-9]/g;
-
         if (name.value.length == 0) {
             alert('Please fill in email');
 
