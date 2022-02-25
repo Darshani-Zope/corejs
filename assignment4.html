@@ -98,7 +98,7 @@
             <h1>REGISTER</h1>
 
             <label for="name">Email</label>
-            <input type="email" onkeydown="validation()" id="name" placeholder="Username" required>
+            <input type="email" class="form-control" onkeydown="validation()" id="name" placeholder="Username" required>
             <span id="text"></span>
             <br>
             <label for="pw">Password</label>
@@ -192,12 +192,16 @@
 
         var name = document.getElementById('name');
         var pw = document.getElementById('pw');
+        let email = document.getElementById('name').value;
+        let pattern = /^([\w\.\+]{1,})([^\W])(@)([\w]{1,})(\.[\w]{1,})+$/;
         var lowerCaseLetters = /[a-z]/g;
         var upperCaseLetters = /[A-Z]/g;
         var numbers = /[0-9]/g;
         if (name.value.length == 0) {
             alert('Please fill in email');
 
+        } else if (!email.match(pattern)) {
+            alert("Please Enter Valid Email ")
         } else if (pw.value.length == 0) {
             alert('Please fill in password');
 
@@ -221,6 +225,7 @@
             localStorage.setItem('pw', pw.value);
             alert('Your account has been created');
         }
+
     }
 
     //checking
