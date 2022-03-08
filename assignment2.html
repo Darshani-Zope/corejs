@@ -55,6 +55,7 @@
             </div>
         </div>
     </div>
+
     <!--/ Simple Registration Form -->
 </body>
 <script>
@@ -197,20 +198,29 @@
         let passwordValidationMsg = document.getElementById('passwordValidationMsg');
         let pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 
-
-        if (inputPassword.match(pattern)) {
-            passwordValidationMsg.textContent = "Valid Password";
-            passwordValidationMsg.classList.remove('text-danger');
-            passwordValidationMsg.classList.add('text-success');
-            return true;
+        if (inputPassword) {
+            if (inputPassword.match(pattern)) {
+                passwordValidationMsg.textContent = "Valid Password";
+                passwordValidationMsg.classList.remove('text-danger');
+                passwordValidationMsg.classList.add('text-success');
+                return true;
+            } else {
+                passwordValidationMsg.textContent = "Invalid Password";
+                passwordValidationMsg.classList.add('text-danger');
+                passwordValidationMsg.classList.remove('text-success');
+                return false;
+            }
         } else {
-            passwordValidationMsg.textContent = "Invalid Password";
+            passwordValidationMsg.textContent = "password cannot empty";
             passwordValidationMsg.classList.add('text-danger');
             passwordValidationMsg.classList.remove('text-success');
-            return false;
         }
 
     }
+
+
+
+
     // console.log(validateName());
 
     function submit1() {
